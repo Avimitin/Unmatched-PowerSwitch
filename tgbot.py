@@ -11,6 +11,19 @@ except ImportError:
     print("Copy the config.example.py to config.py file and restart")
     quit(1)
 
+
+def filter_machine(machines: list[str]) -> tuple[list, list]:
+    board = config.BOARD_ADDR_ALIAS.keys()
+    exist = []
+    non_exist = []
+    for m in machines:
+        if m in board:
+            exist.append(m)
+        else:
+            non_exist.append(m)
+    return (exist, non_exist)
+
+
 async def reboot(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     if update.effective_message is None:
         return
@@ -27,8 +40,7 @@ async def reboot(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     if len(machines) < 1:
         await update.effective_message.reply_text("At least one machine name is required")
 
-    exist_machine = [m for m in machines if m in config.BOARD_ADDR_ALIAS.keys()]
-    non_exist_machine = [m for m in machines if not m in config.BOARD_ADDR_ALIAS.keys()]
+    (exist_machine, non_exist_machine) = filter_machine(machines)
     log.info("New request for rebooting. Reboot boards: {}, Request User: {}", " ".join(machines), update.effective_message.from_user.first_name)
 
     await update.effective_message.reply_text("Those machine doesn't exist: {}".format(" ,".join(non_exist_machine)))
