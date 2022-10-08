@@ -16,6 +16,7 @@ if __name__ == "__main__":
         app = tgbot.init_bot()
         log.info("Bot started")
         app.run_polling()
+        # Quit when this script is ran as daemon
         quit(0)
 
     if args.on != None and len(args.on) != 0:
