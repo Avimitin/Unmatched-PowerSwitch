@@ -2,7 +2,7 @@
 
 ## How to connect
 
-* Connect the sixth pin of the Front Panel Header on Unmatched Board to ADBUS port.
+* Connect the sixth pin of the Front Panel Header on Unmatched Board to [0:7] ADBUS port.
 * Connect the fifth pin of the Front Panel Header on Unmatched Board to GND.
 
 ## How to use
