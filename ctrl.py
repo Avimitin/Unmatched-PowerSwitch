@@ -30,6 +30,7 @@ class UnmatchedPowerSwitch:
 
     # Close the gpio connection
     def close(self) -> None:
+        # FIXME: Why don't we just reuse the connection?
         self.gpio.close()
 
 
