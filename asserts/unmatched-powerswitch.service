@@ -1,0 +1,12 @@
+[Unit]
+Description=A telegram bot daemon for unmatched power switch
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/lib/unmatched-powerswitch
+ExecStart=/usr/bin/python3 /usr/lib/unmatched-powerswitch/main.py
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
