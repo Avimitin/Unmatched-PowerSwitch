@@ -18,6 +18,8 @@ class UnmatchedPowerSwitch:
 
     # Monitor pressing the button
     def poweroff(self) -> None:
+        self.gpio.write(self.pin)
+        time.sleep(3)
         self.gpio.write(0x00)
 
     # Monitor a quick click
@@ -55,7 +57,7 @@ def power_on_all(boards: list):
             log.warn("Unknown board: {}".format(brd))
             return None
         ctrl.power_on()
-        log.info("Board {} is power on".format(brd))
+        log.info("Poweron signal is sent".format(brd))
         ctrl.close()
 
 
@@ -69,6 +71,6 @@ def power_off_all(boards: list):
             log.warn("Unknown board: {}".format(brd))
             return None
         ctrl.poweroff()
-        log.info("Board {} is power off".format(brd))
+        log.info("Poweroff signal is sent".format(brd))
         ctrl.close()
 
