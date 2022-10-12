@@ -9,24 +9,24 @@
 
 ```bash
 pip install -r ./requirements.txt
-cp config.example.py config.py
+# Use environment variable to configure
+vim .env
 python main.py --help
 ```
 
 ## The configuration
 
-```python
-# Detemine list of chats for bot to run
-WHITELIST_CHAT = []
+```bash
+# Detemine list of chats for bot to run, separate by comma
+export POWERSWITCH_WHITELIST_CHAT=123456,7890123
+
 # The bot API token
-TOKEN = ""
+export POWERSWITCH_TGBOT_TOKEN=abcdeg:123511341
 
-# The alias board name. Mapping: Board -> nth of the pin
-BOARD_ADDR_ALIAS = {
-    "magmortar": 2
-}
+# The alias board name. Form: board_name:pin, separate by comma
+export POWERSWITCH_BOARD_ALIAS=magmortar:2,larvesta:3
 
-# FTDI address to connect to
-DEFAULT_FTDI_ADDR = "ftdi:///1"
+# FTDI address to connect to, optional, default "ftdi:///1"
+export POWERSWITCH_FTDI_ADDR=ftdi:///1
 ```
 
