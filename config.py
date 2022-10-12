@@ -43,9 +43,13 @@ def load_config() -> None:
     BOARD_ADDR_ALIAS = alias
 
     ftdi_addr = env("POWERSWITCH_FTDI_ADDR", "ftdi:///1")
-    if ftdi_addr is None:
-        exit("Please provide a ftdi addr. Set by env `POWERSWITCH_FTDI_ADDR`")
     global DEFAULT_FTDI_ADDR
     DEFAULT_FTDI_ADDR = ftdi_addr
 
 load_config()
+
+if __name__ == "__main__":
+    assert len(WHITELIST_CHAT) > 1
+    assert TOKEN != ""
+    assert len(BOARD_ADDR_ALIAS.keys()) > 1
+    assert DEFAULT_FTDI_ADDR != ""
